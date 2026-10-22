@@ -1,0 +1,32 @@
+[package]
+name = "smallhead-mcp"
+version.workspace = true
+edition.workspace = true
+rust-version = "1.88"
+license.workspace = true
+description = "Explicit MCP client connections and late tool discovery for smallhead"
+
+[dependencies]
+smallhead-core.workspace = true
+async-trait.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+thiserror.workspace = true
+tokio.workspace = true
+parking_lot.workspace = true
+rmcp = { version = "=3.5.1", default-features = false, features = ["client", "transport-child-process", "transport-streamable-http-client-reqwest", "reqwest"] }
+reqwest = { version = "0.13.2", default-features = false, features = ["json", "stream", "rustls"] }
+process-wrap = { version = "10.0.1", default-features = false, features = ["tokio1", "process-group"] }
+
+[features]
+test-server = ["rmcp/server", "rmcp/transport-io"]
+
+[[bin]]
+name = "smallhead-mcp-test-server"
+path = "tests/support/server.rs"
+required-features = ["test-server"]
+
+[dev-dependencies]
+tempfile.workspace = true
+# The registry currently has schemars 1.2.2 without its matching derive crate.
+schemars = "=1.2.1"

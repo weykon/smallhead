@@ -1,0 +1,28 @@
+{
+  "name": "@local/dsh-smallhead",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Read-only smallhead observer: session browser panel in the DSH Web UI and a smallhead_status agent tool.",
+  "icon": "./icon.svg",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./package.json": "./package.json",
+    "./locale/*.json": "./locale/*.json"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "cordis.patch.yml",
+    "icon.svg",
+    "locale/*.json"
+  ],
+  "dsh": {
+    "bundle": { "patch": "./cordis.patch.yml" },
+    "client": {
+      "platform": "web",
+      "immediately": true
+    }
+  }
+}

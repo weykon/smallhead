@@ -1,0 +1,45 @@
+[package]
+name        = "smallhead-tui"
+version     = { workspace = true }
+edition     = { workspace = true }
+rust-version = { workspace = true }
+license     = { workspace = true }
+authors     = { workspace = true }
+description = "Terminal UI for the smallhead agent (ratatui + crossterm)"
+
+[[bin]]
+name = "smallhead-tui"
+path = "src/main.rs"
+
+[dependencies]
+# Workspace deps
+tokio            = { workspace = true }
+futures          = { workspace = true }
+anyhow           = { workspace = true }
+async-trait      = { workspace = true }
+serde            = { workspace = true }
+serde_json       = { workspace = true }
+tracing          = { workspace = true }
+tracing-subscriber = { workspace = true }
+
+# TUI
+ratatui          = { workspace = true }
+crossterm        = { workspace = true }
+pulldown-cmark   = { version = "0.13", default-features = false }
+unicode-segmentation = "1.12"
+
+# Internal
+smallhead-core   = { workspace = true }
+smallhead-lens   = { workspace = true }
+smallhead-tools  = { workspace = true }
+smallhead-mcp    = { workspace = true }
+smallhead-xerj   = { workspace = true }
+# v0.4 session persistence
+smallhead-session = { workspace = true }
+
+unicode-width = "0.1"
+chrono         = { workspace = true }
+fs4            = { workspace = true }
+
+[dev-dependencies]
+tempfile         = { workspace = true }

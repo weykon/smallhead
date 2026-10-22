@@ -1,0 +1,25 @@
+[package]
+name        = "smallhead-tools"
+version.workspace     = true
+edition.workspace     = true
+rust-version.workspace = true
+license.workspace     = true
+authors.workspace     = true
+description = "External information tools: web/wiki/code/news search via pure-Rust providers, unified behind WebSearchTool."
+
+[dependencies]
+smallhead-core    = { workspace = true }
+smallhead-process = { workspace = true }
+tokio             = { workspace = true, features = ["process", "io-util", "time", "rt-multi-thread", "macros"] }
+async-trait       = { workspace = true }
+reqwest           = { workspace = true, features = ["json", "stream", "rustls-tls"] }
+regex             = { workspace = true }
+serde             = { workspace = true }
+serde_json        = { workspace = true }
+thiserror         = { workspace = true }
+tracing           = { workspace = true }
+url               = "2.5"
+chrono            = { workspace = true }
+
+[lints]
+workspace = true

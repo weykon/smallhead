@@ -1,0 +1,63 @@
+# Build artifacts
+/target/
+**/target/
+*.target
+
+# Cargo
+**/*.cargo-lock
+Cargo.lock.bak
+
+# IDE / editor
+.idea/
+.vscode/
+*.iml
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# smallhead runtime
+.smallhead/
+/.small-head/
+/.local/
+/.cache/
+
+# Crates vendor / build caches
+**/*.rs.bk
+*.pdb
+
+# Test artifacts
+/tmp/
+**/tmp/
+
+# Secrets / local config
+.env
+.env.*
+!.env.example
+**/.env
+**/.env.*
+!**/.env.example
+
+# Generated docs
+/docs/target/
+
+# Local Claude worktrees
+.claude/
+
+# Coverage / profiling
+*.profraw
+*.gcda
+*.gcno
+/coverage/
+/.profraw
+tarpaulin*
+
+# Benchmark
+/criterion/

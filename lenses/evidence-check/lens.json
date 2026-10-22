@@ -1,0 +1,8 @@
+{
+  "id": "evidence-check",
+  "version": "0.1.0",
+  "description": "结束前追加一次证据核对的循环策略；不提供额外领域工具。",
+  "api_version": 1,
+  "entry": "loop.mjs",
+  "config": {}
+}

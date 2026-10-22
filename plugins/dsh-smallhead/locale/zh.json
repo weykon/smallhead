@@ -1,0 +1,4 @@
+{
+  "title": "smallhead 观察器",
+  "description": "只读的 smallhead 面板：列出本机 smallhead 会话存储里的最近会话，并提供一个 smallhead_status 工具给 Agent。"
+}

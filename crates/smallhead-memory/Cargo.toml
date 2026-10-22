@@ -1,0 +1,67 @@
+[package]
+name        = "smallhead-memory"
+version.workspace     = true
+edition.workspace     = true
+rust-version.workspace = true
+license.workspace     = true
+authors.workspace     = true
+description = "Agent self-memory + personal RAG over LanceDB. v0.5 scaffold."
+
+[dependencies]
+# Internal
+smallhead-core  = { workspace = true }
+
+# Workspace deps (see /Cargo.toml)
+serde           = { workspace = true }
+serde_json      = { workspace = true }
+serde_yaml      = { workspace = true }
+thiserror       = { workspace = true }
+anyhow          = { workspace = true }
+tokio           = { workspace = true }
+async-trait     = { workspace = true }
+
+# LanceDB embedded vector DB. See workspace Cargo.toml for rationale.
+lancedb         = { workspace = true }
+# All Lance sub-crates that compile .proto via prost-build in their build.rs need the
+# `protoc` feature to fall back to vendored protobuf-src (otherwise they require
+# system protoc which we don't assume on macOS dev boxes). lancedb 0.21 pins all of
+# these to ==0.33.0.
+lance-encoding  = { version = "=0.33.0", features = ["protoc"], default-features = false }
+lance-file      = { version = "=0.33.0", features = ["protoc"], default-features = false }
+lance-index     = { version = "=0.33.0", features = ["protoc"], default-features = false }
+lance-table     = { version = "=0.33.0", features = ["protoc"], default-features = false }
+lance           = { version = "=0.33.0", features = ["protoc"], default-features = false }
+
+# Apache Arrow schema types — we build `arrow_schema::Schema` for our LanceDB
+# tables directly. `lancedb` re-exports a few helpers but not the raw schema
+# builder, so we depend on the crate directly. Pinned to whatever
+# `lancedb 0.21.3` already pulls in (55.x) so we don't get a second copy.
+arrow-schema    = "55"
+# Same justification as `arrow-schema` — we need `RecordBatch` / `RecordBatchIterator`
+# / `FixedSizeListArray` / `StringArray` / etc. to construct the batches we hand
+# to `lancedb::Table::add`. Already in the dep graph via `lancedb` (it pins 55.1);
+# declaring it directly just avoids going through `lancedb::arrow::*` re-exports
+# (which don't re-export `arrow_array`).
+arrow-array     = "55"
+
+# UUID v7 for chunk row IDs (timestamp-ordered, workspace pins v7 feature).
+uuid            = { workspace = true }
+
+# `Utc::now().timestamp_millis()` for chunk ts column.
+chrono          = { workspace = true }
+
+# `futures::TryStreamExt::try_collect` to drain LanceDB's SendableRecordBatchStream
+# in `IngestPipeline::search`.
+futures         = { workspace = true }
+
+# Local ONNX embedding via fastembed-rs.
+# v5 chosen because it still ships the `EmbeddingModel::BGESmallZHV15()` enum variant
+# and the synchronous `TextEmbedding::try_new(InitOptions { .. })` API (v6/v7 redesigned).
+# On first call the crate downloads `BAAI/bge-small-zh-v1.5` (~50MB) into ~/.cache/fastembed/
+# and the ONNX runtime shared library via the `ort-download-binaries-native-tls` feature
+# (default), so the gem works out-of-the-box on macOS dev boxes without system-level ONNX.
+fastembed        = "5"
+
+[dev-dependencies]
+tempfile        = { workspace = true }
+tokio           = { workspace = true, features = ["full", "test-util"] }

@@ -1,0 +1,8 @@
+{
+  "id": "teaching-feedback",
+  "version": "0.2.0",
+  "description": "学习助手的教学反馈层：根据用户纠正、实际作答和工具证据调整讲解，保留帮助程度与方法假设的不确定性。不强制追加自评轮；建议加载在 learning-agent 之后。Teaching feedback and evidence-grounded adaptation.",
+  "api_version": 1,
+  "entry": "loop.mjs",
+  "config": { "enabled": true }
+}

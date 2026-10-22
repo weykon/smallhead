@@ -1,0 +1,326 @@
+{
+  "synthetic": true,
+  "correct": 7,
+  "total": 8,
+  "note": "Same cases, different scoring protocol; reranker defer is an explicit document, not a calibrated rejection threshold.",
+  "results": [
+    {
+      "id": "tool-add",
+      "selected": "add",
+      "expected": "add",
+      "correct": true,
+      "prediction": {
+        "model": "Qwen/Qwen3-Reranker-0.6B",
+        "device": "mps",
+        "dtype": "float32",
+        "status": "ready",
+        "max_tokens": 8192,
+        "torch": "2.8.0",
+        "inference_ms": 493.9951249398291,
+        "results": [
+          {
+            "index": 0,
+            "document": "add: Add two numbers 求和、加法",
+            "score": 0.975965142250061,
+            "input_tokens": 99
+          },
+          {
+            "index": 3,
+            "document": "defer: Need more evidence or reasoning; none of these operations is appropriate.",
+            "score": 0.13657285273075104,
+            "input_tokens": 102
+          },
+          {
+            "index": 1,
+            "document": "multiply: Multiply two numbers 乘法",
+            "score": 0.1356169879436493,
+            "input_tokens": 95
+          },
+          {
+            "index": 2,
+            "document": "read_order: Read an order by ID 查询订单",
+            "score": 3.300913522252813e-05,
+            "input_tokens": 97
+          }
+        ],
+        "score_type": "yes_no_softmax_not_cross_candidate_probability"
+      }
+    },
+    {
+      "id": "tool-mul",
+      "selected": "multiply",
+      "expected": "multiply",
+      "correct": true,
+      "prediction": {
+        "model": "Qwen/Qwen3-Reranker-0.6B",
+        "device": "mps",
+        "dtype": "float32",
+        "status": "ready",
+        "max_tokens": 8192,
+        "torch": "2.8.0",
+        "inference_ms": 230.92433298006654,
+        "results": [
+          {
+            "index": 1,
+            "document": "multiply: Multiply two numbers 乘法",
+            "score": 0.9347202777862549,
+            "input_tokens": 98
+          },
+          {
+            "index": 3,
+            "document": "defer: Need more evidence or reasoning; none of these operations is appropriate.",
+            "score": 0.20139585435390472,
+            "input_tokens": 105
+          },
+          {
+            "index": 0,
+            "document": "add: Add two numbers 求和、加法",
+            "score": 0.04878484085202217,
+            "input_tokens": 102
+          },
+          {
+            "index": 2,
+            "document": "read_order: Read an order by ID 查询订单",
+            "score": 1.8803339116857387e-05,
+            "input_tokens": 100
+          }
+        ],
+        "score_type": "yes_no_softmax_not_cross_candidate_probability"
+      }
+    },
+    {
+      "id": "tool-multi",
+      "selected": "multiply",
+      "expected": "defer",
+      "correct": false,
+      "prediction": {
+        "model": "Qwen/Qwen3-Reranker-0.6B",
+        "device": "mps",
+        "dtype": "float32",
+        "status": "ready",
+        "max_tokens": 8192,
+        "torch": "2.8.0",
+        "inference_ms": 132.5830421410501,
+        "results": [
+          {
+            "index": 1,
+            "document": "multiply: Only multiply two numbers",
+            "score": 0.45958462357521057,
+            "input_tokens": 97
+          },
+          {
+            "index": 0,
+            "document": "add: Only add two numbers",
+            "score": 0.21411828696727753,
+            "input_tokens": 97
+          },
+          {
+            "index": 2,
+            "document": "defer: Need more evidence or reasoning; none of these operations is appropriate.",
+            "score": 0.09401285648345947,
+            "input_tokens": 106
+          }
+        ],
+        "score_type": "yes_no_softmax_not_cross_candidate_probability"
+      }
+    },
+    {
+      "id": "memory-project",
+      "selected": "memory_smallhead",
+      "expected": "memory_smallhead",
+      "correct": true,
+      "prediction": {
+        "model": "Qwen/Qwen3-Reranker-0.6B",
+        "device": "mps",
+        "dtype": "float32",
+        "status": "ready",
+        "max_tokens": 8192,
+        "torch": "2.8.0",
+        "inference_ms": 310.10033329948783,
+        "results": [
+          {
+            "index": 0,
+            "document": "memory_smallhead: Project small-head uses Rust. Source: project manifest.",
+            "score": 0.9986621141433716,
+            "input_tokens": 102
+          },
+          {
+            "index": 1,
+            "document": "memory_other: Project web-shop uses TypeScript. Source: project manifest.",
+            "score": 0.05631013959646225,
+            "input_tokens": 101
+          },
+          {
+            "index": 2,
+            "document": "memory_preference: User prefers Cantonese explanations.",
+            "score": 0.0020826933905482292,
+            "input_tokens": 96
+          },
+          {
+            "index": 3,
+            "document": "defer: Need more evidence or reasoning; none of these operations is appropriate.",
+            "score": 0.00013699859846383333,
+            "input_tokens": 102
+          }
+        ],
+        "score_type": "yes_no_softmax_not_cross_candidate_probability"
+      }
+    },
+    {
+      "id": "memory-current",
+      "selected": "current_preference",
+      "expected": "current_preference",
+      "correct": true,
+      "prediction": {
+        "model": "Qwen/Qwen3-Reranker-0.6B",
+        "device": "mps",
+        "dtype": "float32",
+        "status": "ready",
+        "max_tokens": 8192,
+        "torch": "2.8.0",
+        "inference_ms": 337.6757907681167,
+        "results": [
+          {
+            "index": 1,
+            "document": "current_preference: 2026-10-01: prefers Cantonese; active.",
+            "score": 0.676675021648407,
+            "input_tokens": 120
+          },
+          {
+            "index": 0,
+            "document": "old_preference: 2026-09-01: prefers English; superseded on 2026-10-01.",
+            "score": 0.5119272470474243,
+            "input_tokens": 132
+          },
+          {
+            "index": 2,
+            "document": "defer: Need more evidence or reasoning; none of these operations is appropriate.",
+            "score": 0.00097622349858284,
+            "input_tokens": 114
+          }
+        ],
+        "score_type": "yes_no_softmax_not_cross_candidate_probability"
+      }
+    },
+    {
+      "id": "data-live",
+      "selected": "order_db",
+      "expected": "order_db",
+      "correct": true,
+      "prediction": {
+        "model": "Qwen/Qwen3-Reranker-0.6B",
+        "device": "mps",
+        "dtype": "float32",
+        "status": "ready",
+        "max_tokens": 8192,
+        "torch": "2.8.0",
+        "inference_ms": 173.98462491109967,
+        "results": [
+          {
+            "index": 0,
+            "document": "order_db: Live order database: order status by order ID.",
+            "score": 0.26134493947029114,
+            "input_tokens": 97
+          },
+          {
+            "index": 1,
+            "document": "memory_store: Historical conversation facts, not live order status.",
+            "score": 0.005878471303731203,
+            "input_tokens": 96
+          },
+          {
+            "index": 2,
+            "document": "docs: Shipping policy documents, not individual orders.",
+            "score": 0.0011892369948327541,
+            "input_tokens": 94
+          },
+          {
+            "index": 3,
+            "document": "defer: Need more evidence or reasoning; none of these operations is appropriate.",
+            "score": 0.0005836248747073114,
+            "input_tokens": 99
+          }
+        ],
+        "score_type": "yes_no_softmax_not_cross_candidate_probability"
+      }
+    },
+    {
+      "id": "data-policy",
+      "selected": "docs",
+      "expected": "docs",
+      "correct": true,
+      "prediction": {
+        "model": "Qwen/Qwen3-Reranker-0.6B",
+        "device": "mps",
+        "dtype": "float32",
+        "status": "ready",
+        "max_tokens": 8192,
+        "torch": "2.8.0",
+        "inference_ms": 158.2298749126494,
+        "results": [
+          {
+            "index": 1,
+            "document": "docs: Return and refund policy documents.",
+            "score": 0.247461199760437,
+            "input_tokens": 90
+          },
+          {
+            "index": 0,
+            "document": "order_db: Live individual order records.",
+            "score": 0.07247947156429291,
+            "input_tokens": 90
+          },
+          {
+            "index": 2,
+            "document": "memory_store: User's personal preferences.",
+            "score": 0.003151050303131342,
+            "input_tokens": 90
+          },
+          {
+            "index": 3,
+            "document": "defer: Need more evidence or reasoning; none of these operations is appropriate.",
+            "score": 0.0013460194459185004,
+            "input_tokens": 97
+          }
+        ],
+        "score_type": "yes_no_softmax_not_cross_candidate_probability"
+      }
+    },
+    {
+      "id": "unknown",
+      "selected": "defer",
+      "expected": "defer",
+      "correct": true,
+      "prediction": {
+        "model": "Qwen/Qwen3-Reranker-0.6B",
+        "device": "mps",
+        "dtype": "float32",
+        "status": "ready",
+        "max_tokens": 8192,
+        "torch": "2.8.0",
+        "inference_ms": 159.98645778745413,
+        "results": [
+          {
+            "index": 2,
+            "document": "defer: Need more evidence or reasoning; none of these operations is appropriate.",
+            "score": 0.05938899889588356,
+            "input_tokens": 95
+          },
+          {
+            "index": 1,
+            "document": "docs: Read purchasing policies.",
+            "score": 0.0002510685008019209,
+            "input_tokens": 86
+          },
+          {
+            "index": 0,
+            "document": "order_db: Look up order status.",
+            "score": 5.8223937230650336e-05,
+            "input_tokens": 88
+          }
+        ],
+        "score_type": "yes_no_softmax_not_cross_candidate_probability"
+      }
+    }
+  ]
+}

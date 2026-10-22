@@ -1,0 +1,45 @@
+[package]
+name        = "smallhead-core"
+version.workspace     = true
+edition.workspace     = true
+rust-version.workspace = true
+license.workspace     = true
+authors.workspace     = true
+repository.workspace  = true
+homepage.workspace    = true
+keywords.workspace    = true
+categories.workspace  = true
+description = "Core agent loop: AgentMessage + Provider + Tool + AgentLoop"
+
+[dependencies]
+tokio        = { workspace = true }
+async-trait  = { workspace = true }
+futures      = { workspace = true }
+async-stream = { workspace = true }
+serde        = { workspace = true }
+serde_json   = { workspace = true }
+anyhow       = { workspace = true }
+thiserror    = { workspace = true }
+tokio-util   = { workspace = true }
+tokio-stream = "0.1"
+reqwest      = { workspace = true }
+bytes        = { workspace = true }
+sha2         = { workspace = true }
+tracing               = { workspace = true }
+tracing-subscriber    = { workspace = true }
+uuid                  = { workspace = true }
+parking_lot           = { workspace = true }
+smallhead-permission  = { workspace = true }
+smallhead-process = { workspace = true }
+
+[dev-dependencies]
+tokio = { workspace = true, features = ["full", "test-util"] }
+tempfile = { workspace = true }
+
+# v0.4 session persistence（demo example 用）
+# 注意：放 dev-dependencies 避免 smallhead-core ↔ smallhead-session 循环依赖。
+smallhead-session    = { workspace = true }
+
+[[example]]
+name = "demo"
+path = "examples/demo.rs"

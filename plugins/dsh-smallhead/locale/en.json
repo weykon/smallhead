@@ -1,0 +1,4 @@
+{
+  "title": "smallhead observer",
+  "description": "Read-only smallhead panel: recent sessions from the local smallhead session store, plus a smallhead_status agent tool."
+}

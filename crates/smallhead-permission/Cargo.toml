@@ -1,0 +1,11 @@
+[package]
+name        = "smallhead-permission"
+version.workspace     = true
+edition.workspace     = true
+rust-version.workspace = true
+license.workspace     = true
+authors.workspace     = true
+description = "Permission ruleset + doom_loop detector. v0.4 YOLO blacklist."
+
+[dependencies]
+thiserror = { workspace = true }

@@ -1,0 +1,11 @@
+[package]
+name        = "smallhead-web"
+version.workspace     = true
+edition.workspace     = true
+rust-version.workspace = true
+license.workspace     = true
+authors.workspace     = true
+description = "Static HTML + HTMX web UI resources. v0.4 stub."
+
+[dependencies]
+# v0.4 placeholder — no Rust deps, static assets only

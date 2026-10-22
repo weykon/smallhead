@@ -1,0 +1,123 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/smallhead-core",
+    "crates/smallhead-lens",
+    "crates/smallhead-tools",
+    "crates/smallhead-mcp",
+    "crates/smallhead-xerj",
+    "crates/smallhead-permission",
+    "crates/smallhead-session",
+    "crates/smallhead-ecs",
+    "crates/smallhead-skill",
+    "crates/smallhead-memory",
+    "crates/smallhead-process",
+    "crates/smallhead-cli",
+    "crates/smallhead-server",
+    "crates/smallhead-web",
+    "crates/smallhead-tui",
+]
+
+[workspace.package]
+version     = "0.1.0"
+edition     = "2021"
+rust-version = "1.85"
+license     = "MIT OR Apache-2.0"
+authors     = ["Weykon"]
+repository  = "https://github.com/weykon/smallhead"
+homepage    = "https://github.com/weykon/smallhead"
+documentation = "https://docs.rs/smallhead"
+keywords    = ["agent", "llm", "ecs", "cli", "ai"]
+categories  = ["command-line-utilities", "development-tools"]
+readme      = "README.md"
+
+[workspace.dependencies]
+# Async runtime
+tokio         = { version = "1.40", features = ["full"] }
+async-trait   = "0.1"
+futures       = "0.3"
+async-stream  = "0.3"
+
+# Serialization
+serde         = { version = "1.0", features = ["derive"] }
+serde_json    = "1.0"
+serde_yaml    = "0.9"
+
+# Error handling
+anyhow        = "1.0"
+thiserror     = "1.0"
+
+# HTTP / networking
+reqwest       = { version = "0.12", features = ["json", "stream"] }
+axum          = "0.7"
+tower         = "0.5"
+tokio-tungstenite = "0.24"
+
+# CLI / TUI
+clap          = { version = "4.5", features = ["derive", "cargo"] }
+ratatui       = "0.28"
+crossterm     = "0.28"
+
+# Storage
+rusqlite      = { version = "0.32", features = ["bundled"] }
+uuid          = { version = "1.10", features = ["v7", "serde"] }
+walkdir       = "2.5"
+# LanceDB embedded vector DB. Requires rustc 1.94+ (rust-toolchain.toml pins 1.99.0).
+# v0.21 chosen because it pulls lance-encoding 0.33 which loosened bytemuck pin to ^1.14
+# (vs 0.13's ==1.18 → unresolvable vs wgpu-types 29's ^1.22).
+lancedb       = "0.21"
+
+# Utilities
+regex         = "1.10"
+glob          = "0.3"
+sha2          = "0.10"
+tokio-util    = { version = "0.7", features = ["rt"] }
+bytes         = "1.7"
+parking_lot   = "0.12"
+fs4           = "0.8"
+
+# Time
+chrono        = { version = "0.4", features = ["serde"] }
+
+# Logging / tracing
+tracing       = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+# Temp dirs for tests
+tempfile      = "3.10"
+assert_cmd    = "2.0"
+predicates    = "3.1"
+
+# Internal crate paths (canonical, used by member crates)
+smallhead-core       = { path = "crates/smallhead-core" }
+smallhead-lens       = { path = "crates/smallhead-lens" }
+smallhead-tools      = { path = "crates/smallhead-tools" }
+smallhead-mcp        = { path = "crates/smallhead-mcp" }
+smallhead-xerj       = { path = "crates/smallhead-xerj" }
+smallhead-permission = { path = "crates/smallhead-permission" }
+smallhead-session    = { path = "crates/smallhead-session" }
+smallhead-ecs        = { path = "crates/smallhead-ecs" }
+smallhead-skill      = { path = "crates/smallhead-skill" }
+smallhead-memory     = { path = "crates/smallhead-memory" }
+smallhead-process    = { path = "crates/smallhead-process" }
+smallhead-cli        = { path = "crates/smallhead-cli" }
+smallhead-server     = { path = "crates/smallhead-server" }
+smallhead-web        = { path = "crates/smallhead-web" }
+
+[workspace.lints.rust]
+unsafe_code = "forbid"
+missing_docs = "warn"
+
+[profile.release]
+opt-level     = 3
+lto           = "thin"
+codegen-units = 1
+strip         = "symbols"
+debug         = false
+
+[profile.dev]
+opt-level = 0
+debug     = true
+
+[profile.dev.package."*"]
+opt-level = 1

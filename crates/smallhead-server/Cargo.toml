@@ -1,0 +1,35 @@
+[package]
+name        = "smallhead-server"
+version     = { workspace = true }
+edition     = { workspace = true }
+rust-version = { workspace = true }
+license     = { workspace = true }
+authors     = { workspace = true }
+description = "Optional local A2A bridge (axum) + headless agent runner for smallhead."
+
+[[bin]]
+name = "smallhead-server"
+path = "src/main.rs"
+
+[dependencies]
+# Workspace deps
+tokio             = { workspace = true }
+tokio-util        = { workspace = true }
+axum              = { workspace = true }
+serde             = { workspace = true }
+serde_json        = { workspace = true }
+uuid              = { workspace = true }
+reqwest           = { workspace = true }
+tracing           = { workspace = true }
+tracing-subscriber = { workspace = true }
+clap              = { workspace = true }
+anyhow            = { workspace = true }
+
+# Internal
+smallhead-core    = { workspace = true }
+smallhead-lens    = { workspace = true }
+smallhead-tools   = { workspace = true }
+smallhead-session = { workspace = true }
+
+[dev-dependencies]
+tempfile          = { workspace = true }

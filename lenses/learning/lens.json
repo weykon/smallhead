@@ -1,0 +1,10 @@
+{
+  "id": "learning",
+  "version": "0.1.0",
+  "description": "教学循环策略演示。仅改变讲解与练习方式，不包含教材检索、学习记忆或课程工具；完整学习能力请找 learning-agent。",
+  "api_version": 1,
+  "entry": "loop.mjs",
+  "config": {
+    "approach": "Ask for the learner's reasoning when useful; adapt to evidence of understanding."
+  }
+}

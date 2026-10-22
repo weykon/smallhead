@@ -1,0 +1,11 @@
+[package]
+name        = "smallhead-cli"
+version.workspace     = true
+edition.workspace     = true
+rust-version.workspace = true
+license.workspace     = true
+authors.workspace     = true
+description = "CLI + ratatui TUI. v0.2 stub."
+
+[dependencies]
+# v0.2 placeholder
